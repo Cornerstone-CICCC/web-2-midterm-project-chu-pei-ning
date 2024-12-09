@@ -22,7 +22,7 @@ function fetchMovie(page = 1) {
     movies.forEach(movie => {
       // 為每部電影創建單獨的容器
       const movieContainer = document.createElement('div')
-      movieContainer.classList.add('movie-list') // 使用統一樣式
+      movieContainer.classList.add('movie-list')
 
       // 添加圖片
       const imgElement = document.createElement('img')
@@ -92,7 +92,7 @@ function fetchMovieDetails(movieId) {
       dialogM.appendChild(h1Element)
 
       const h3Element = document.createElement('h3')
-      h3Element.textContent = `Original name: ${data.original_title}`
+      h3Element.textContent = `${data.original_title}`
       h3Element.classList.add('m-orig-title')
       dialogM.appendChild(h3Element)
 
@@ -204,12 +204,12 @@ function fetchTVDetails(tvId) {
       dialogT.appendChild(h1Element)
 
       const h3Element = document.createElement('h3')
-      h3Element.textContent = `Original name: ${data.original_name}`
+      h3Element.textContent = `${data.original_name}`
       h3Element.classList.add('t-orig-title')
       dialogT.appendChild(h3Element)
 
       const imgElement = document.createElement('img')
-      imgElement.src = `https://image.tmdb.org/t/p/w200${data.backdrop_path}`
+      imgElement.src = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`
       imgElement.alt = data.name
       imgElement.classList.add('t-img')
       dialogT.appendChild(imgElement)
@@ -239,38 +239,5 @@ tvTab.addEventListener('click', () => {
   movie.classList.add('dis-none')
 })
 
-// search
-// fetch('https://api.themoviedb.org/3/search/multi?include_adult=false&language=en-US&page=1', options)
-  // .then(res => res.json())
-  // .then(res => console.log(res))
-  // .catch(err => console.error(err));
-
-const query = document.querySelector('.search-query').results
-const url = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=en-US&page=1&query=${query}`;
-
-fetch(url, options)
-  .then(res => res.json())
-  .then(res => {
-    if (res.results && res.results.length > 0) {
-      //
-    } else {
-      //
-    }
-  })
-  .catch(err => console.error('發生錯誤：', err));
-
-
 fetchMovie()
 fetchTV()
-
-const checkBtn = document.getElementById('check-5');
-const body = document.body;
-
-checkBtn.addEventListener('change', () => {
-    if (checkBtn.checked) {
-        body.classList.add('light-theme');
-    } else {
-        body.classList.remove('light-theme');
-    }
-});
-
